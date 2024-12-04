@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Example</title>
+    <script>
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        alert(`Vị trí hiện tại của bạn:\nLatitude: ${latitude}\nLongitude: ${longitude}`);
+                    },
+                    (error) => {
+                        alert("Không thể lấy vị trí của bạn. Hãy kiểm tra cài đặt quyền truy cập vị trí.");
+                    }
+                );
+            } else {
+                alert("Trình duyệt của bạn không hỗ trợ xác định vị trí.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <a href="#" onclick="getUserLocation()">Nhấn vào đây để lấy vị trí hiện tại</a>
+</body>
+</html>
